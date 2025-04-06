@@ -19,9 +19,13 @@ function Register() {
   const registerFc = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.post(`${api}/api/users`, teacher)
-      console.log(response.data)
+      const response = await axios.post(`${api}/api/user/sign-up?access_token=67dbc36eaf06d13e0cde0c21`, {email: teacher.email, password: teacher.password, name: teacher.login , surname: teacher.login})
+      console.log(response?.data)
+      localStorage.setItem('token', response?.data?.data?.token)
+      localStorage.setItem('userId', response?.data?.data?.user?._id)
       toast.success('Registration successful!')
+      navigate('/')
+      
     } catch (error) {
       console.log(error)
       setErrorMessage(error.response?.data?.message || 'An error occurred, please try again later.')

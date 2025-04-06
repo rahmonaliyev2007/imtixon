@@ -5,24 +5,17 @@ import { useNavigate } from 'react-router-dom';
 function TeachersTable({ posts }) {
   const navigate = useNavigate();
 
-  const getValue = (text, tag) => {
-    const match = text?.match(new RegExp(`<${tag}>\\s*(.*?)\\s*<\\/${tag}>`));
-    return match ? match[1] : 'Topilmadi';
-  };
-
   const dataSource = posts?.map((item, index) => {
-    const { text } = item;
-
     return {
       key: index,
-      id: item._id ,
+      id: item._id,
       user: item.user,
-      name: getValue(text, 'name'),
-      email: getValue(text, 'email'),
-      subject: getValue(text, 'subject'),
-      classs: getValue(text, 'classs'),
-      image: getValue(text, 'image'),
-      gender: getValue(text, 'gender'),
+      name: item.title,
+      email: item._id,     
+      subject: item.category,
+      classs: item.discount_price || '0',
+      image: item.main_image, 
+      gender: item.created_by, 
     };
   }) || [];
 

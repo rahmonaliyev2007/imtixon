@@ -81,7 +81,7 @@ export default function Dashboard_Layout() {
             <button onClick={handleLogout} className={`${location.pathname === '/' ? "bg-[#509CDB] text-white hover:border-black hover:text-black hover:bg-black/10 py-2 px-5" : " text-black py-2 px-0 hover:text-[#509CDB] "}   border border-transparent  rounded-lg font-medium transition-all duration-700`}>Log Out</button>
           </div>
         </nav>
-        <div className='h-screen w-full pt-20'>
+        <div className='h-screen w-full pt-20 overflow-scroll'>
           <Outlet />
         </div>
       </div>

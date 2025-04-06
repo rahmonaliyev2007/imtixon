@@ -16,13 +16,10 @@ function Login() {
   const loginFc = async () => {
     try {
       setIsLoading(true)
-      const response = await axios.post(`${api}/api/auth`, teacher)
+      const response = await axios.post(`${api}/api/user/sign-in?access_token=67dbc36eaf06d13e0cde0c21`, teacher)
       console.log(response.data)
-      localStorage.setItem('token', response.data.token)
-      const res2 = await axios.get(`${api}/api/auth`, { headers: { "X-Auth-Token": localStorage.getItem('token') } })
-      localStorage.setItem('userId', res2?.data?._id)
-      localStorage.setItem('user', res2?.data?.name)
-      console.log(res2?.data)
+      localStorage.setItem('token', response?.data?.data?.token)
+      localStorage.setItem('userId', response?.data?.data?.user?._id)
       navigate('/')
 
     } catch (error) {
